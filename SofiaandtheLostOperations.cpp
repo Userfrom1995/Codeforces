@@ -23,6 +23,7 @@ while(c--){
     d = 0;
     t =0;
     z = 0;
+    int last = 1;
     cin >> c;
     int arrc[c];
     for(int i = 0; i < c; i++)
@@ -33,7 +34,7 @@ while(c--){
      for(int i = 0; i < n; i++)
      {
         if(arra[i] != arrb[i])
-        {
+        {    t = t + 1;
             for(int j = 0; j < c; j++)
             {
                 if(arrb[i] == arrc[j])
@@ -48,6 +49,7 @@ while(c--){
                 }
                 else{
                     d =1;
+                    
 
                 }
 
@@ -57,29 +59,44 @@ while(c--){
             }
         }
 
-        else{
-            t = t + 1;
+       
+
+     }
+
+     for(int i = 0; i< n ; i++){
+        if(arrb[i]==arrc[c-1]){
+            last = 0;
+            break;
+
+
         }
+     }
+
+     if(d==0 && arrc[c-1]==0 && t == z){
+        cout<<"YES"<<endl;
+        
+     }
+
+     
+
+     else if(d==0 && last == 0 && t==z){
+         cout<<"YES"<<endl;
+         
 
      }
 
-     if(z<c){
-
-     if(d == 0)
-     {
-         cout << "YES" << endl;
-     }
      else{
-         cout << "NO" << endl;
-     }
-     }
-
-     else {
-        cout<<"NO"<<endl;
+            cout<<"NO"<<endl;
+            
      }
 
+
+
+
+
+    
 }
 
 
-return 0;
+ return 0;
 }
