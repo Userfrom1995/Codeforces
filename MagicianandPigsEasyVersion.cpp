@@ -1,84 +1,41 @@
-#include <iostream>
-#include <stack>
+#include <bits/stdc++.h>
 using namespace std;
 
-// Function definition
-void function(int n, int arr1[], int arr2[], stack<int>& myStack, stack<int>& modifiedStack) {
-    if (arr1[n] == 1) {
-        myStack.push(arr2[n]);
-    } else if (arr1[n] == 2) {
-        // Transfer elements from myStack to modifiedStack with modification
-        while (!myStack.empty()) {
-            int element = myStack.top(); // Access the top element
-            myStack.pop(); // Remove the top element
-
-            element -= arr2[n]; // Subtract arr2[n] from the element
-
-            modifiedStack.push(element); // Push the modified element onto the new stack
-        }
-    } else {
-        arr2[n] = 0;
-        for (int i = 0; i < n; i++) {
-            function(i, arr1, arr2, myStack, modifiedStack); // Recursive call
-        }
-    }
-}
-
-// Function to count positive values in the stack
-int countPositiveValues(const stack<int>& s) {
-    stack<int> temp = s; // Create a copy of the stack
-    int count = 0;
-
-    while (!temp.empty()) {
-        if (temp.top() > 0) {
-            count++; // Increment count if the value is positive
-        }
-        temp.pop(); // Remove the top element
-    }
-
-    return count;
-}
-
-// Function to print the stack
-void printStack(stack<int> s) {
-    while (!s.empty()) {
-        cout << s.top() << ' '; // Print the top element
-        s.pop(); // Remove the top element
-    }
-    cout << endl;
-}
+#define ll long long
+const ll mod = 998244353, inv = (mod + 1) / 2;
+int n;
+map<ll, ll> s;
+ll tot, mul = 1, ts = 1;
+inline void add(ll &x, ll y) { (x += y) >= mod && (x -= mod); }
 
 int main() {
-    int a;
-    cin >> a;
-    int arr1[a];
-    int arr2[a];
-    stack<int> myStack;
-    stack<int> modifiedStack;
-
-    // Input processing
-    for (int i = 0; i < a; i++) {
-        cin >> arr1[i];
-        if (arr1[i] == 1) {
-            cin >> arr2[i];
-        } else if (arr1[i] == 2) {
-            cin >> arr2[i];
-        } else {
-            arr2[i] = 0;
-        }
+  ios_base::sync_with_stdio(false);
+  cin.tie(0);
+  cout.tie(0);
+  cin >> n;
+  while (n--) {
+    int op;
+    cin >> op;
+    if (op == 1) {
+      ll x;
+      cin >> x;
+      add(s[x + tot], ts);
+    } else if (op == 2) {
+      ll x;
+      cin >> x;
+      tot += x;
+    } else if (tot <= 2e5) {
+      if (tot == 0)
+        mul = mul * 2 % mod, ts = ts * inv % mod;
+      else {
+        for (ll i = tot + 2e5; i > tot; i--) add(s[i + tot], s[i]);
+        tot *= 2;
+      }
     }
-
-    // Process each element using function
-    for (int i = 0; i < a; i++) {
-        function(i, arr1, arr2, myStack, modifiedStack);
-    }
-
-    // Output
-    cout << "Modified stack: ";
-    printStack(modifiedStack);
-    printStack(myStack);
-
-    cout << "Number of positive values: " << countPositiveValues(modifiedStack) << endl;
-
-    return 0;
-}
+  }
+  ll res = 0;
+  for (auto i : s)
+    if (i.first > tot) add(res, i.second);
+  res = res * mul % mod;
+  cout << res;
+  return 0;}

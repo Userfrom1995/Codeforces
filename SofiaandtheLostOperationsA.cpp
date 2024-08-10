@@ -1,54 +1,77 @@
     #include <iostream>
+    #include <vector>
+    #include <unordered_set>
+    #include <fstream>
+    #include <chrono> 
     using namespace std;
+    using namespace chrono;
+
+    void fast_io() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+     };
+
      
     int main() {
-        int c ;
-        cin >> c;
+        fast_io();
+
+        // Start measuring time
+        auto start = high_resolution_clock::now();
+
+        // Open input and output files
+        ifstream infile("input.txt");
+        ofstream outfile("output.txt");
+
+      if (!infile) {
+        cerr << "Error opening input file!" << endl;
+        return 1;
+       };
+
+      if (!outfile) {
+        cerr << "Error opening output file!" << endl;
+        return 1;
+       };
+
+        long long c ;
+        infile >> c;
     while(c--){
-        int n ;
-        cin >> n;
-        int arra[n];
-        for(int i = 0; i < n; i++)
-        {
-            cin >> arra[i];
-        }
-        int arrb[n];
+        long long n ;
+        infile >> n;
+        vector<long long> arra(n), arrb(n);
+        
+        for (long long &x : arra) infile >> x;
+        for (long long &x : arrb) infile >> x;
      
-        for(int i = 0; i < n; i++){
-            cin >> arrb[i];
-     
-        };
-     
-        int c , d , t , z;
-        d = 0;
-        t =0;
-        z = 0;
-        int last = 1;
-        cin >> c;
-        int arrc[c];
-        for(int i = 0; i < c; i++)
-        {
-            cin >> arrc[i];
-        }
+        
+        long long last = 1;
+       long long m;
+        infile >> m;
+        vector<long long> arrc(m);
+        
+       for (long long &x : arrc) infile >> x;
+
+         long long mismatch_count = 0, match_count = 0;
+         bool valid = true;
          
-         for(int i = 0; i < n; i++)
+         for (long long i = 0; i < n; i++)
          {
             if(arra[i] != arrb[i])
-            {    t = t + 1;
-                for(int j = 0; j < c; j++)
+            {    mismatch_count++;
+                for (long long j = 0; j < m; j++)
                 {
                     if(arrb[i] == arrc[j])
                     {
                         arrc[j] = 0;
-                        d = 0;
-                        z = z + 1;
+                        valid = true;
+                       match_count++;
                         break;
      
      
      
                     }
                     else{
-                        d =1;
+                        valid = false;
                         
      
                     }
@@ -63,8 +86,8 @@
      
          }
      
-         for(int i = 0; i< n ; i++){
-            if(arrb[i]==arrc[c-1]){
+         for (long long i = 0; i< n ; i++){
+            if(arrb[i]==arrc[m-1]){
                 last = 0;
                 break;
      
@@ -72,21 +95,21 @@
             }
          }
      
-         if(d==0 && arrc[c-1]==0 && t == z){
-            cout<<"Yes"<<endl;
+         if( valid && arrc[m-1]==0 && mismatch_count == match_count){
+            outfile<<"Yes"<<endl;
             
          }
      
          
      
-         else if(d==0 && last == 0 && t==z){
-             cout<<"Yes"<<endl;
+         else if(valid && last == 0 && mismatch_count == match_count){
+             outfile<<"Yes"<<endl;
              
      
          }
      
          else{
-                cout<<"NO"<<endl;
+                outfile<<"NO"<<endl;
                 
          }
      
@@ -96,6 +119,15 @@
      
         
     }
+    infile.close();
+    outfile.close();
+
+    // Stop measuring time
+    auto stop = high_resolution_clock::now();
+
+    // Calculate the duration
+    auto duration = duration_cast<milliseconds>(stop - start);
+    cout << "Execution time: " << duration.count() << " ms" << endl;
      
      
      return 0;

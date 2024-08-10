@@ -9,7 +9,7 @@ pattern = """50
 """
 
 # Repeat the pattern 2000 times
-repeated_pattern = pattern * 200000
+repeated_pattern = pattern * 2000000
 
 # Save to a text file
 file_path = r"C:\Users\Tejas Tyagi\VS-CODE\CodeForces\input.txt"
