@@ -1,36 +1,55 @@
 #include <iostream>
 #include <string>
-#include <vector>
-#include <algorithm>
-#include <cmath>
+#include <fstream>
+#include <boost/multiprecision/cpp_int.hpp>
 
-using namespace std;
 typedef long long ll;
 
+void fast_io() {
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+    std::cout.tie(nullptr);
+}
+
 int main() {
-    ll publickey, a, b;
-    cin >> publickey >> a >> b;
+    fast_io();
+    std::string myString ;
+    ll a ,b ;
+    std:: getline(std::cin, myString);
+    std::cin >> a >> b;
+      // Number of characters to print
 
-    string numStr = std::to_string(publickey);
-    int length = numStr.length();
+    // Print the first n characters
+    for(ll i = 1; i <= myString.length(); i++) {
+        std::string s = myString.substr(0, i);
+        ll num = std::cpp_int(s);
+        if(s[0] == '0') continue;
+        if(num % a == 0){
 
-    ll num = publickey;
-    ll backnum = 0;
+            std::string S = myString.substr(i);
+            if(S[0] == '0') continue;
+            if(S.length() < 1) continue;
+            ll num2 = std::stoll(S);
+            
+            
 
-    for(int i = 0; i < length; i++) {
-        num = num / 10;  // Use the outer num variable
-
-        if(num % a == 0) {
-            ll back = static_cast<ll>(pow(10, i+1));  // Compute 10^i
-             backnum = publickey % back;
-
-            if(backnum % b == 0) {
-                cout << "YES" << endl;
-                return 0;  // Early exit if condition is met
+            if(num2 % b == 0){
+                std::cout << "YES" << std::endl;
+                std::cout << s << std::endl;
+                std::cout << S << std::endl;
+                return 0;
             }
+
+    
+
         }
+
     }
 
-    cout << "NO" << endl;  // If no valid division is found
+    std::cout << "NO" << std::endl;
+    
+
+
+
     return 0;
 }

@@ -9,3 +9,4 @@ def generate_input(filename, num_lines):
             file.write(f"{first} {second}\n")
 
 generate_input('input.txt', 2000)
+
