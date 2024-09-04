@@ -34,16 +34,25 @@ ll solve(vll &arr, ll size, ll a, ll b) {
 
     if (diff == 0 || (diff < b && diff < a)) {
         return diff;
+    
     }
     else if (diff % a == 0 || diff % b == 0 || diff % (a + b) == 0) {
         return 0;
     }
     else if (diff > a) {
-        arr[size - 1] += a;
+        arr[0] += a;
         return solve(arr, size, a, b);
     }
     else if (diff > b) {
-        arr[size - 1] += b;
+        arr[0] += b;
+        return solve(arr, size, a, b);
+    }
+    else if (diff > diff - b) {
+        arr[0] += b;
+        return solve(arr, size, a, b);
+    }
+    else if (diff > diff - a) {
+        arr[0] += a;
         return solve(arr, size, a, b);
     }
     else {
@@ -72,7 +81,7 @@ int main() {
         ll result = solve(arr, size, a, b);
         cout << result << "\n";
     }
-    DEBUG("result");
+    
    
 
 
