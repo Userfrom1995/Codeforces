@@ -9,7 +9,7 @@ lli getNext(lli pv, lli pw, lli cur) {
     if (cur == pv) return pw;
     if (cur == 1) return -1;
     if (pv == 1) return 0;
-    const double det = log2(log2((double)pv)) - log2(log2((double)cur));
+    const double det = log2(log2((long double)pv)) - log2(log2((long double)cur));
     return max(0LL, pw + (lli)ceil(det));
 }
 
@@ -17,9 +17,9 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     
-    lli T;
-    cin >> T;
-    while (T--) {
+    lli t;
+    cin >> t;
+    while (t--) {
         lli n;
         cin >> n;
         vi a(n);
