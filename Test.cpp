@@ -1,32 +1,57 @@
+
 #include <iostream>
-#include <vector>
-#include <unordered_set>
-#include <fstream>
-#include <chrono>
-#include <string>
+#include<string>
+#include<list>
 using namespace std;
 
-int main() {
-    std::string myString ;
-    myString = "123456789";
+class YouTubeChannel {
+	string Name;
+	int SubscribersCount;
+public:
+	YouTubeChannel(string name, int subscribersCount) {
+		Name = name;
+		SubscribersCount = subscribersCount;
+	}
+	bool operator==(const YouTubeChannel& channel) const {
+		return this->Name == channel.Name;
+	}
 
-    int start1 = 6, end1 = 8; // Range 1: [6, 9]
-    int start2 = 7, end2 = 8; // Range 2: [7, 8]
-
-    // Calculate the start and end of the overlap
-    int overlap_start = std::max(start1, start2);
-    int overlap_end = std::min(end1, end2);
-
-    // Check if there's an overlap
-    if (overlap_start <= overlap_end) {
-        // Number of common elements is the difference between overlap_end and overlap_start + 1
-        int common_elements = overlap_end - overlap_start + 1;
-        std::cout << "Number of common elements: " << common_elements << std::endl;
-    } else {
-        std::cout << "No common elements." << std::endl;
-    }
-
-    return 0;
+	friend ostream& operator<<(ostream& COUT, YouTubeChannel& ytChannel);
+};
+ostream& operator<<(ostream& COUT, YouTubeChannel& ytChannel) {
+	COUT << "Name: " << ytChannel.Name << endl;
+	COUT << "Subscribers: " << ytChannel.SubscribersCount << endl;
+	return COUT;
+}
+class MyCollection {
+	list<YouTubeChannel>myChannels;
+public:
+	void operator+=(YouTubeChannel& channel) {
+		this->myChannels.push_back(channel);
+	}
+	void operator-=(YouTubeChannel& channel) {
+		this->myChannels.remove(channel);
+	}
+	friend ostream& operator<<(ostream& COUT, MyCollection& myCollection);
+};
+ostream& operator<<(ostream& COUT, MyCollection& myCollection) {
+	for (YouTubeChannel ytChannel : myCollection.myChannels)
+		COUT << ytChannel << endl;
+	return COUT;
 }
 
+int main()
+{
+	YouTubeChannel yt1 = YouTubeChannel("CodeBeauty", 75000);
+	YouTubeChannel yt2 = YouTubeChannel("My second channel", 80000);
 
+	MyCollection myCollection;
+	myCollection += yt1;
+	myCollection += yt2;
+	//myCollection -= yt2;
+
+	cout << myCollection;
+    myCollection -= yt2;
+    cout << myCollection;
+	cin.get();
+} 

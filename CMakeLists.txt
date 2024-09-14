@@ -27,7 +27,8 @@ add_executable(CodeForces
     test.py
     TrainandQueries.cpp
     UniformString.cpp
-    watermelon.cpp)
+    watermelon.cpp
+        SplittingItems.cpp)
 
 add_executable(DoraandC++ DoraandC++.cpp)
 add_executable(DoraandC++ DoraandC++.cpp)

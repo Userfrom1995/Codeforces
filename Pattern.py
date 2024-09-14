@@ -1,19 +1,16 @@
-# Repeating the pattern 2000 times and saving it to a text file
+# Function to generate test cases
+def generate_test_cases():
+    test_cases = 1000  # Number of test cases
+    N = 2  # Fixed value of N
+    
+    # Open a file to write the test cases
+    with open("input.txt", "w") as f:
+        # Write the number of test cases at the top
+        f.write(f"{test_cases}\n")
+        
+        # Generate test cases
+        for i in range(2, test_cases + 2):  # K starts from 2 to 1001
+            f.write(f"{N} {i}\n")
 
-# Define the pattern
-pattern = "5056656546565689987546546546546484654675464545465"
-
-
-# Repeat the pattern 2000 times
-for i in range(2):
- pattern = pattern + pattern
- 
- 
- 
-
-# Save to a text file
-file_path = r"C:\Users\Tejas Tyagi\VS-CODE\CodeForces\input.txt"
-with open(file_path, "w") as file:
-    file.write(pattern)
-
-file_path
+# Call the function to generate test cases
+generate_test_cases()
