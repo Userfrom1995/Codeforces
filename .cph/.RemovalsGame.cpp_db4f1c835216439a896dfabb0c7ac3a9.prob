@@ -1,0 +1,1 @@
+{"name":"Local: RemovalsGame","url":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\RemovalsGame.cpp","tests":[{"id":1726407272338,"input":"2\n2\n1 2\n1 2\n3\n1 2 3\n2 3 1\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\RemovalsGame.cpp","group":"local","local":true}

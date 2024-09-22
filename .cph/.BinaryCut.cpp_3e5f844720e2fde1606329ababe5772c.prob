@@ -1,0 +1,1 @@
+{"name":"Local: BinaryCut","url":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\BinaryCut.cpp","tests":[{"id":1726552591751,"input":"6\n11010\n00000000\n1\n10\n0001111\n0110\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\BinaryCut.cpp","group":"local","local":true}

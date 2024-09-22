@@ -1,50 +1,41 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
-
-using ll = long long;
-
-// Function to calculate the sum of the first `count` numbers starting from `start`
-ll sum_of_arithmetic_series(ll start, ll count) {
-    return count * (2 * start + (count - 1)) / 2;
-}
-
-// Function to calculate the difference between the sum of the first `pos` elements and the rest
-ll solve(ll N, ll pos, ll k) {
-    // Sum of the first `pos` elements starting from `k`
-    ll sum_first_N = sum_of_arithmetic_series(k, pos);
-    
-    // Sum of the elements after `pos` till `N`
-    ll sum_after_N = sum_of_arithmetic_series(k + pos, N - pos);
-    
-    // Compute and return the absolute difference
-    return abs(sum_after_N - sum_first_N);
-}
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    
-    int t;
-    cin >> t;
-    while (t--) {
-        ll n, k;
-        cin >> n >> k;
-
-        // Start with the middle position
-        ll pos = n / 2;  
-        ll diff = solve(n, pos, k);
-
-        // Edge case for small values of pos (special case handling)
-        if (pos == 1) {
-            cout << diff << endl;
-        } else {
-            // Adjust pos until the difference is less than or equal to the element at `k + pos`
-            while (diff > (k + pos) && pos < n) {
-                pos++;
-                diff = solve(n, pos, k);
-            }
-            cout << diff << endl;
+ 
+#define int long long
+ 
+signed main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+ 
+    #ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    #endif
+ 
+    int tt; cin >> tt;
+ 
+    while(tt--) {
+        int n, k; cin >> n >> k;
+ 
+        auto getSum = [&](int l, int r) -> int {
+            return (r * (r + 1) / 2) - (l * (l - 1) / 2); 
+        };
+ 
+        int left = k, right = k + n - 1, answer = LLONG_MAX;
+ 
+        while(left <= right) {
+            int mid = (left + right) / 2;
+            int sum1 = getSum(k, mid), sum2 = getSum(mid + 1, k + n - 1);
+            answer = min(answer, abs(sum1 - sum2));
+            if(sum1 > sum2) right = mid - 1;
+            else left = mid + 1;
         }
+ 
+        cout << answer << "\n";
     }
     return 0;
 }
+
+
+    
