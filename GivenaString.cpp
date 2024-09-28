@@ -28,14 +28,30 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-void solve() {
-	// Write your main logic here
-}
+ 
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	char out = 'a'+1;
-	cout<<out<<"\n";
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    unordered_map<string, bool> substringsMap;
+    string s;
+    cin>>s;
+    ll n = s.size();
+    for (int len = n - 1; len > 0; len--) {
+        for (int i = 0; i + len <= n; i++) { 
+            string currentSubstr = s.substr(i, len);
+            
+           
+            if (substringsMap.find(currentSubstr) != substringsMap.end()) {
+               
+                cout << currentSubstr.length() << '\n';
+                return 0; 
+            }
+            
+            substringsMap[currentSubstr] = true;
+        }
+    }
+    cout << 0 <<"\n";
+
+    return 0;
 }

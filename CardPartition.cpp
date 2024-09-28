@@ -29,13 +29,46 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-	// Write your main logic here
+    ll n,k;
+    cin >> n >> k;
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    ll max = 0;
+    for(ll i=0;i<n;i++){
+        if(a[i]>max){
+            max = a[i];
+        }
+    }
+
+    ll sum = 0;
+    for(ll i=0;i<n;i++){
+        sum += a[i];
+    }
+
+    for(ll i =n ; i >0;i--){
+        ll q = (sum+k)/i;
+        if(q*i<=sum-1){
+            continue;
+        }
+        if(q<=max-1){
+            continue;
+        }
+        cout << i << "\n";
+        return;
+    }
+
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	char out = 'a'+1;
-	cout<<out<<"\n";
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }

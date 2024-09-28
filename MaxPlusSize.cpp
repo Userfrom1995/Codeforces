@@ -28,14 +28,38 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-void solve() {
-	// Write your main logic here
+ll solve(ll start,ll n,vector<ll> a){ {
+   ll l = 0;
+   ll c =0;
+   for(ll i=start;i<n;i=i+2){
+       if(a[i]>l){
+           l = a[i];
+       }
+         c++;
+   }
+    return c+l;
+    }
+    
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	char out = 'a'+1;
-	cout<<out<<"\n";
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    ll even = solve(0,n,a);
+    ll odd = solve(1,n,a);
+    cout << max(even,odd) << endl;
+
+    
+    }
+    return 0;
 }

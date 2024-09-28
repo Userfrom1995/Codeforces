@@ -1,0 +1,1 @@
+{"name":"Local: Speedbreaker","url":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\Speedbreaker.cpp","tests":[{"id":1727451188079,"input":"3\n6\n6 3 3 3 5 5\n6\n5 6 4 1 4 5\n9\n8 6 4 2 1 3 5 7 9\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\Speedbreaker.cpp","group":"local","local":true}
