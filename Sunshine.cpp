@@ -29,17 +29,38 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-	// Write your main logic here
+   ll n;
+    cin >> n;
+    string a;
+    cin >> a;
+    ll count=0;
+    ll max = 0;
+   
+    for(ll i=0;i<n;i++){
+        if(a[i]=='1'){
+           count++;
+        }
+        else{
+            if(count>max){
+                max = count;
+            }
+            count = 0;
+        }
+    }
+    if(count>max){
+        max = count;
+    }
+    cout<<max<<"\n";
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	int t;
-	cin >> t;
-	while (t--) {
-		solve();
-	}
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }

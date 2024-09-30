@@ -29,17 +29,34 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-	// Write your main logic here
+   ll n;
+   cin >> n;
+   ll a[n];
+   ll mn=0;
+    f(i, 0, n) {
+         cin >> a[i];
+    }
+    ll sum = 0;
+    f(i, 0, n) {
+        sum = a[i]+sum;
+       if(sum < 0) {
+           mn = min(mn, sum);
+       }
+    }
+
+        sum = sum-2*mn;
+    
+    cout << sum << "\n";
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	int t;
-	cin >> t;
-	while (t--) {
-		solve();
-	}
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }

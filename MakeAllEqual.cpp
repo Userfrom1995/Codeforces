@@ -29,17 +29,28 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-	// Write your main logic here
+    ll n;
+    cin >> n;
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    vll freq(1001, 0);
+    for (ll i = 0; i < n; i++) {
+        freq[a[i]]++;
+    }
+    ll max_freq = *max_element(all(freq));
+    cout<<n-max_freq<<"\n";
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	int t;
-	cin >> t;
-	while (t--) {
-		solve();
-	}
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }

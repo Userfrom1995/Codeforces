@@ -63,6 +63,7 @@
   "files.associations": {
     "*.md": "markdown",
     "iostream": "cpp",
-    "ostream": "cpp"
+    "ostream": "cpp",
+    "random": "cpp"
   }
 }

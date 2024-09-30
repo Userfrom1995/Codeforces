@@ -29,17 +29,30 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-	// Write your main logic here
+    ll n ,k;
+    cin >> n >> k;
+    vector<ll> a(n);
+    for (ll i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    sort(a.begin(), a.end(), std::greater<int>());
+
+      ll sum = 0;
+    for (ll i = 0; i < k; ++i) {
+        sum += 2 * a[i];  // Doubling the element and adding to sum
+    }
+    cout<<sum<<"\n";
+
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	int t;
-	cin >> t;
-	while (t--) {
-		solve();
-	}
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }
