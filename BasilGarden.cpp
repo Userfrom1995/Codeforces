@@ -27,37 +27,40 @@ const ll LINF = 1e18;
 
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
-ll median(vll a)
-{
-	sort(a.begin(),a.end());
-	if(a.size()%2==0)
-	{
-		return (a[a.size()/2]+a[a.size()/2-1])/2;
-	}
-	else
-	{
-		return (a[a.size()/2]);
-	}
-}
+
 
 void solve() {
-	vll a = {100,2,3,46,5,6,70,87,9,10};
-	cout<<median(a)<<"\n";
-	vll b = {1,2,36,34,50,60,37,80,98};
-	cout<<median(b)<<"\n";
-	vll c ;
-	c.insert(c.end(),a.begin(),a.end());
-	c.insert(c.end(),b.begin(),b.end());
-	cout<<median(c)<<"\n";
-	
+    ll n;
+    cin>>n;
+    ll arr[n];
+
+    f(i,0,n){
+        cin>>arr[i];
+    }
+    if(n==1){
+        std::cout<<arr[0]<<"\n";
+        return;
+    }
+    ll ans=arr[n-1];
+    
+    ll maxElement = arr[0]; 
+    for (ll i = n-2; i >=0; i--) {
+        ans=max(ans+1, arr[i]);
+    }
+    
+
+    std::cout<<ans<<"\n";
 }
+//No idea why my previous solution didn't worked
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	
-		solve();
-	
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }

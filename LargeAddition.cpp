@@ -27,37 +27,36 @@ const ll LINF = 1e18;
 
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
-ll median(vll a)
-{
-	sort(a.begin(),a.end());
-	if(a.size()%2==0)
-	{
-		return (a[a.size()/2]+a[a.size()/2-1])/2;
-	}
-	else
-	{
-		return (a[a.size()/2]);
-	}
-}
 
 void solve() {
-	vll a = {100,2,3,46,5,6,70,87,9,10};
-	cout<<median(a)<<"\n";
-	vll b = {1,2,36,34,50,60,37,80,98};
-	cout<<median(b)<<"\n";
-	vll c ;
-	c.insert(c.end(),a.begin(),a.end());
-	c.insert(c.end(),b.begin(),b.end());
-	cout<<median(c)<<"\n";
-	
+    string n;
+    cin >> n;
+    if(n[0]!='1'){
+        cout<<"NO"<<"\n";
+        return;
+    }
+    if(n[n.size()-1]=='9'){
+        cout<<"NO"<<"\n";
+        return;
+    }
+    for(int i=1;i<n.size()-1;i++){
+        if(n[i]=='0'){
+            cout<<"NO"<<"\n";
+            return;
+        }
+    }
+    cout<<"YES"<<"\n";
+
 }
 
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-	
-	
-		solve();
-	
-	return 0;
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
+    }
+    return 0;
 }

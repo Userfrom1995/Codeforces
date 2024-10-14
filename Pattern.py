@@ -1,16 +1,21 @@
-# Function to generate test cases
-def generate_test_cases():
-    test_cases = 1000  # Number of test cases
-    N = 2  # Fixed value of N
-    
-    # Open a file to write the test cases
-    with open("input.txt", "w") as f:
-        # Write the number of test cases at the top
-        f.write(f"{test_cases}\n")
-        
-        # Generate test cases
-        for i in range(2, test_cases + 2):  # K starts from 2 to 1001
-            f.write(f"{N} {i}\n")
+def min_customers(t):
+    for _ in range(t):
+        n, x = map(int, input().split())
+        a = list(map(int, input().split()))
+        a.sort(reverse=True)
+        customers = 0
+        remaining = 0
+        for i in range(0, n, x):
+            for j in range(i, min(i + x, n)):
+                if a[j] <= x - (j % x) if j % x != 0 else x:
+                    customers += 1
+                elif a[j] < x:
+                    remaining += a[j]
+                else:
+                    customers += (a[j] + x - 1) // x
+                    remaining += (a[j] - (a[j] + x - 1) // x * x - (x - 1) if j % x != 0 else a[j] - x * ((a[j] + x - 1) // x)) % x
+        customers += remaining // x + (1 if remaining % x != 0 else 0)
+        print(customers)
 
-# Call the function to generate test cases
-generate_test_cases()
+t = int(input())
+min_customers(t)

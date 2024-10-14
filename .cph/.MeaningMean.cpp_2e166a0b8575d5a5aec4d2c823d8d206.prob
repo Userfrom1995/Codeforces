@@ -1,0 +1,1 @@
+{"name":"Local: MeaningMean","url":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\MeaningMean.cpp","tests":[{"id":1728196940659,"input":"3\n5\n1 7 8 4 5\n3\n2 6 5\n5\n5 5 5 5 5\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\MeaningMean.cpp","group":"local","local":true}

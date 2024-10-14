@@ -1,0 +1,1 @@
+{"name":"Local: K-Sort","url":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\K-Sort.cpp","tests":[{"id":1728579079100,"input":"5\n3\n1 7 9\n5\n2 1 4 7 6\n4\n1 3 2 4\n1\n179\n9\n344 12 37 60 311 613 365 328 675\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\K-Sort.cpp","group":"local","local":true}
