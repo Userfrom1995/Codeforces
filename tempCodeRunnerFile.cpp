@@ -1,5 +1,1 @@
-
-    cout << x << endl;
-
-return 0;
-}
+#include <iostream>

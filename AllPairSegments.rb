@@ -25,6 +25,7 @@ def gcd(a, b)
     end
   
     ans = []
+    
     q.times do
       x = gets.to_i
       ans.push(mp[x])

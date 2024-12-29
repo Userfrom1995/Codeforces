@@ -1,28 +1,51 @@
-# Function to calculate the difference for N=2
-def calculate_difference(k):
-    # We know N is fixed to 2, so the sequence is [k, k+1]
-    sum_first_part = k  # First element
-    sum_second_part = k + 1  # Second element
-    difference = abs(sum_second_part - sum_first_part)  # Difference between second part and first part
-    return difference
+MOD = 998244353
 
-# Function to generate output for each test case
-def generate_output():
-    # Open the input and output files
-    with open("input.txt", "r") as infile, open("output.txt", "w") as outfile:
-        # Read the number of test cases (first line)
-        test_cases = int(infile.readline().strip())
+def solve(t, test_cases):
+    results = []
+    
+    for case in test_cases:
+        n, planets = case
+        planets.sort()  # Sort planets based on their intervals (can experiment with sorting criteria)
         
-        # Process each test case
-        for _ in range(test_cases):
-            # Read the values of N and K (we don't need N since it's always 2)
-            n, k = map(int, infile.readline().strip().split())
+        total_score = 0
+        
+        # Process each subset of planets
+        for subset_mask in range(1, (1 << n)):  # Loop over all subsets
+            max_l = -1
+            min_r = n + 1
+            expansions = 0
             
-            # Calculate the result
-            result = calculate_difference(k)
+            for i in range(n):
+                if subset_mask & (1 << i):  # Planet i is in this subset
+                    l, r = planets[i]
+                    max_l = max(max_l, l)
+                    min_r = min(min_r, r)
             
-            # Write the result to the output file
-            outfile.write(f"{result}\n")
+            if max_l <= min_r:
+                expansions = 0  # No expansion needed
+            else:
+                expansions = min(max_l - min_r, 1)  # Minimum expansion to make intervals overlap
+            
+            total_score = (total_score + expansions) % MOD
+        
+        results.append(total_score)
+    
+    return results
 
-# Call the function to generate the output file
-generate_output()
+# Input reading
+t = int(input())
+test_cases = []
+for _ in range(t):
+    n = int(input())
+    planets = []
+    for _ in range(n):
+        l, r = map(int, input().split())
+        planets.append((l, r))
+    test_cases.append((n, planets))
+
+# Solve
+results = solve(t, test_cases)
+
+# Output results
+for result in results:
+    print(result)
