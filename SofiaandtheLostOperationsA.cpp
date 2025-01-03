@@ -1,134 +1,94 @@
-    #include <iostream>
-    #include <vector>
-    #include <unordered_set>
-    #include <fstream>
-    #include <chrono> 
-    using namespace std;
-    using namespace chrono;
+#include <bits/stdc++.h>
+using namespace std;
 
-    void fast_io() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-     };
+// Shortcuts for common data types
+using ll = long long;
+using vi = vector<int>;
+using vll = vector<long long>;
+using pii = pair<int, int>;
+using pll = pair<long long, long long>;
 
-     
-    int main() {
-        fast_io();
+// Constants
+const int MOD = 1e9 + 7;
+const int INF = 1e9;
+const ll LINF = 1e18;
 
-        // Start measuring time
-        auto start = high_resolution_clock::now();
+// Shortcuts for common functions
+#define pb push_back
+#define mp make_pair
+#define fi first
+#define se second
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)(x.size())
 
-        // Open input and output files
-        ifstream infile("input.txt");
-        ofstream outfile("output.txt");
+// Looping shortcuts
+#define f(i, a, b) for (ll i = a; i < b; i++)
+#define r(i, n) FOR(i, 0, n)
 
-      if (!infile) {
-        cerr << "Error opening input file!" << endl;
-        return 1;
-       };
+// Debugging shortcuts (optional, can be removed)
+#define DEBUG(x) cerr << #x << " = " << (x) << "\n"
 
-      if (!outfile) {
-        cerr << "Error opening output file!" << endl;
-        return 1;
-       };
-
-        long long c ;
-        infile >> c;
-    while(c--){
-        long long n ;
-        infile >> n;
-        vector<long long> arra(n), arrb(n);
-        
-        for (long long &x : arra) infile >> x;
-        for (long long &x : arrb) infile >> x;
-     
-        
-        long long last = 1;
-       long long m;
-        infile >> m;
-        vector<long long> arrc(m);
-        
-       for (long long &x : arrc) infile >> x;
-
-         long long mismatch_count = 0, match_count = 0;
-         bool valid = true;
-         
-         for (long long i = 0; i < n; i++)
-         {
-            if(arra[i] != arrb[i])
-            {    mismatch_count++;
-                for (long long j = 0; j < m; j++)
-                {
-                    if(arrb[i] == arrc[j])
-                    {
-                        arrc[j] = 0;
-                        valid = true;
-                       match_count++;
-                        break;
-     
-     
-     
-                    }
-                    else{
-                        valid = false;
-                        
-     
-                    }
-     
-                    
-     
-     
-                }
+void solve() {
+    ll n;
+    cin >> n;
+    ll a[n];
+    ll b[n];
+    f(i, 0, n) {
+        cin >> a[i];
+    }
+    f(i, 0, n) {
+        cin >> b[i];
+    }
+    ll m;
+    cin >> m;
+    ll d[m];
+    f(i, 0, m) {
+        cin >> d[i];
+    }
+    map<ll, ll> B;
+    map<ll, ll> D;
+    f(i, 0, m) {
+        D[d[i]]++;
+    }
+    f(i, 0, n) {
+        B[b[i]]++;
+    }
+    
+    f(i, 0, n) {
+        if (b[i]!=a[i]) {
+            if(D[b[i]]>0) {
+                D[b[i]]--;
+               
+            } else {
+                cout << "NO" << "\n";
+                return;
             }
-     
-           
-     
-         }
-     
-         for (long long i = 0; i< n ; i++){
-            if(arrb[i]==arrc[m-1]){
-                last = 0;
-                break;
-     
-     
-            }
-         }
-     
-         if( valid && arrc[m-1]==0 && mismatch_count == match_count){
-            outfile<<"Yes"<<endl;
             
-         }
-     
+        }
          
-     
-         else if(valid && last == 0 && mismatch_count == match_count){
-             outfile<<"Yes"<<endl;
-             
-     
-         }
-     
-         else{
-                outfile<<"NO"<<endl;
-                
-         }
-     
-     
-     
-     
-     
+           
         
     }
-    infile.close();
-    outfile.close();
+    if(B[d[m-1]]>0){
+        cout << "YES" << "\n";
+        return;}
 
-    // Stop measuring time
-    auto stop = high_resolution_clock::now();
+        else{
+                 cout<<"NO"<<"\n";
+                 return;
+        }
+    
 
-    // Calculate the duration
-    auto duration = duration_cast<milliseconds>(stop - start);
-    cout << "Execution time: " << duration.count() << " ms" << endl;
-     
-     
-     return 0;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
     }
+    return 0;
+}
