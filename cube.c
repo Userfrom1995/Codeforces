@@ -95,7 +95,7 @@ int main() {
     // second cube
     for (float cubeX = -cubeWidth; cubeX < cubeWidth; cubeX += incrementSpeed) {
       for (float cubeY = -cubeWidth; cubeY < cubeWidth;
-           cubeY += incrementSpeed) {
+           cubeY += incremeile using ntSpeed) {
         calculateForSurface(cubeX, cubeY, -cubeWidth, '@');
         calculateForSurface(cubeWidth, cubeY, cubeX, '$');
         calculateForSurface(-cubeWidth, cubeY, -cubeX, '~');
