@@ -21,25 +21,32 @@ void solve() {
     }
    
 
-    if (n % 2 == 0) {
-        if ((y - x) % 2 != 0) {
-            printVector(ans);
-        } else {
-            ans[y] = 2;
-            printVector(ans);
-        }
-    } else {
-        if ((y - x) % 2 != 0) {
-            ans[(x + n - 1) % n] = 2;
-            printVector(ans);
-        } else {
-            ans[y] = 2;
-            for (ll i = 1; i <= n-y; i++) {
-                ans[(y+i) % n] = (i-1)% 2;
-            }
-            printVector(ans);
-        }
-    }
+    // if (n % 2 == 0) {
+    //     if ((y - x) % 2 != 0) {
+    //         printVector(ans);
+    //     } else {
+    //         ans[y] = 2;
+    //         printVector(ans);
+    //     }
+    // } else {
+    //     if ((y - x) % 2 != 0) {
+    //         ans[(x + n - 1) % n] = 2;
+    //         printVector(ans);
+    //     } else {
+    //         ans[y] = 2;
+    //         for (ll i = 1; i <= n-y; i++) {
+    //             ans[(y+i) % n] = (i-1)% 2;
+    //         }
+    //         printVector(ans);
+    //     }
+    // }
+
+    if (n % 2 || (x - y) % 2 == 0)
+            ans[x] = 2;
+
+   printVector(ans);
+ 
+
 }
 
 int main() {
@@ -53,3 +60,4 @@ int main() {
     }
     return 0;
 }
+//It was brutal, so simply yet soo confusion.
