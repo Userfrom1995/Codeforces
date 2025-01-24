@@ -1,68 +1,23 @@
 #include <bits/stdc++.h>
-using namespace std;
-
-// Shortcuts for common data types
-using ll = long long;
-using vi = vector<int>;
-using vll = vector<long long>;
-using pii = pair<int, int>;
-using pll = pair<long long, long long>;
-
-// Constants
-const int MOD = 1e9 + 7;
-const int INF = 1e9;
-const ll LINF = 1e18;
-
-// Shortcuts for common functions
-#define pb push_back
-#define mp make_pair
-#define fi first
-#define se second
-#define all(x) x.begin(), x.end()
-#define sz(x) (int)(x.size())
-
-// Looping shortcuts
-#define f(i, a, b) for (ll i = a; i < b; i++)
-#define r(i, n) FOR(i, 0, n)
-
-// Debugging shortcuts (optional, can be removed)
-#define DEBUG(x) cerr << #x << " = " << (x) << endl
-
+ 
+using i64 = long long;
+ 
 void solve() {
-   
-    int L, R;
-    cin >> L >> R;
-    // Function to compute the maximum XOR sum
-    
-        // Compute the highest bit where L and R differ
-        int max_xor = 0;
-        for (int i = 31; i >= 0; --i) {
-            if ((L & (1 << i)) != (R & (1 << i))) {
-                max_xor = (1 << (i + 1)) - 1; // All bits set below this point
-                break;
-            }
-        }
-    
-        // Use the maximum possible XOR range to test values
-        int a = L, b = R, c = L + 1; // Select spread-out values
-        cout<<a <<" "<<b<<" "<<c<<endl;
-    
-    
-    
-       
-      
-    
-    
+    int l, r;
+    std::cin >> l >> r;
+    int k = 31 - __builtin_clz(l ^ r);
+    int a = l | ((1 << k) - 1), b = a + 1, c = (a == l ? r : l);
+    std::cout << a << " " << b << " " << c << "\n";
 }
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    
-    int t;
-    cin >> t;
+ 
+signed main() {
+    std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr);
+ 
+    int t = 1;
+    std::cin >> t;
+ 
     while (t--) {
         solve();
     }
-    return 0;
 }

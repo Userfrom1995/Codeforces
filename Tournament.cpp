@@ -23,7 +23,7 @@ const ll LINF = 1e18;
 
 // Looping shortcuts
 #define f(i, a, b) for (ll i = a; i < b; i++)
-#define r(i, n) FOR(i, 0, n)
+#define r(i, n) for (ll i = 0; i < n; i++)
 
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
@@ -31,36 +31,50 @@ const ll LINF = 1e18;
 void solve() {
     ll n;
     cin >> n;
-    ll arr[n]={0};
-    ll match = ((n*(n-1))/2) - 1;
-    for(ll i=0;i<match;i++){ 
-        ll x,a;
-        cin >>x>>a ;
-        arr[x-1]++;
-        arr[a-1]++;
+    ll arr[n+1] = {0};  // Number of edges connected to node i
+    ll w[n+1] = {0};    // Weight for comparison
+
+    ll match = ((n * (n - 1)) / 2) - 1;  // This is the total number of pairs minus 1
+
+    // Read input for the connections (edges)
+    f(i, 0, match) { 
+        ll x, a;
+        cin >> x >> a;
+        arr[x]++;
+        arr[a]++;
+        w[x]++;
     }
+
+    bool flag1 = false;
+    ll p1, p2;
     
-   
-    ll count = 0;
-    for(ll i =0;i<n;i++){
-        if(arr[i]!=n-1){
-            cout << i+1 << " ";
-            count++;
+    // Find the two nodes that don't have `match + 1` edges
+    match = n- 1;
+    f(i, 1, n+1) {
+        if (arr[i]<  match && !flag1) {
+            p1 = i;
+            flag1 = true;
+            continue;
         }
-        if(count==2){
-            return;
+        if (arr[i] < match  && flag1) {
+            p2 = i;
+            break;
         }
-
     }
 
+    // Compare the weights of the two nodes and print in the required order
+    if (w[p1] > w[p2]) {
+        cout << p1 << " " << p2 << "\n";
+    } else {
+        cout << p2 << " " << p1 << "\n";
+    }
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    
-    
-        solve();
-    
+
+    solve();
+
     return 0;
 }

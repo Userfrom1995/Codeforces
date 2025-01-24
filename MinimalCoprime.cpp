@@ -27,28 +27,16 @@ const ll LINF = 1e18;
 
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
-int arr[INF]={0};
 
 void solve() {
-
-   ll n;
-    cin >> n;
-    ll c;
-    cin >> c;
-   
-   while(c--){
-      ll a,b,c;
-        cin >> a >> b >> c;
-        for(ll i=0;i<=b;i++){
-            arr[a+b*c]++;
-        }
-
-        
-
-   }
-   
-
-
+    ll l,r;
+    cin>>l>>r;
+    if(l==1&&r==1){
+        cout<<1<<"\n";
+    }
+    else{
+        cout<<r-l<<"\n";
+    }
 }
 
 int main() {

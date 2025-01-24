@@ -1,0 +1,1 @@
+{"name":"Local: NaiveStringSplits","url":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\NaiveStringSplits.cpp","tests":[{"id":1737563932965,"input":"1\n4 10\nczzz\nczzzzzczzz\n","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\Tejas Tyagi\\VS-CODE\\CodeForces\\NaiveStringSplits.cpp","group":"local","local":true}

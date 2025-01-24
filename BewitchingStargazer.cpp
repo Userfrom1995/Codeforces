@@ -1,55 +1,22 @@
-#include <bits/stdc++.h>
+#include<iostream>
 using namespace std;
-
-typedef long long ll;
-
-
-ll compute_lucky_value(ll n, ll k) {
-    ll sum = 0;
-    
-    stack<pair<ll, ll>> segments;
-    segments.emplace(1, n);
-    
-    while (!segments.empty()) {
-        pair<ll, ll> current = segments.top();
-        segments.pop();
-        ll l = current.first;
-        ll r = current.second;
-        ll length = r - l + 1;
-        
-        if (length < k) continue;
-        
-        ll m = (l + r) / 2;
-        
-        if (length % 2 == 1) {
-            
-            if (m - 1 >= l) {
-                segments.emplace(l, m - 1);
-            }
-            if (m + 1 <= r) {
-                segments.emplace(m + 1, r);
-            }
-        } else {
-           
-            segments.emplace(l, m);
-            segments.emplace(m + 1, r);
-        }
-    }
-    
-    return sum;
-}
-
+ 
+int t;
+ 
 int main(){
-    ios::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    int t;
-    cin >> t;
+    cin>>t;
     while(t--){
-        ll n, k;
-        cin >> n >> k;
-        cout << compute_lucky_value(n, k) << "\n";
+        long long n,k,x=1,ans=0;
+        cin>>n>>k;
+        long double mid=double(n+1)/2;
+        while(n>=k){
+            if((1+n)%2==0) ans+=mid*x;
+            n/=2;
+            x*=2;
+           
+        }
+        cout<<ans<<endl;
     }
-    
     return 0;
 }
+// This one took me a complete day to understand I'm still not sure I can solve this kind in a contest or recursion failed man I tried many things
