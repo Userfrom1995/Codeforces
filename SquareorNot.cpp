@@ -29,7 +29,24 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-    // Write your main logic here
+    ll n;
+    cin >> n;
+
+    string s;
+    cin >> s;
+
+    ll o = 0;
+    for (char c : s) {
+        if (c == '1') o++;
+    }
+
+    // Precompute the value to compare
+    ll target = 4 * sqrt(n) - 4;
+    if (o == target) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
 }
 
 int main() {

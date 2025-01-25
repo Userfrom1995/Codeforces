@@ -1,85 +1,80 @@
-#include <iostream>
-#include <vector>
-#include <set>
-typedef long long ll;
-
+#include <bits/stdc++.h>
 using namespace std;
 
-// Check for upright or upside-down triangles
-bool isUprightTriangle(const vector<int>& p1, const vector<int>& p2, const vector<int>& p3) {
-    if (p1[0] == p2[0] && p1[1] != p2[1]) {
+// Shortcuts for common data types
+using ll = long long;
+using vi = vector<int>;
+using vll = vector<long long>;
+using pii = pair<int, int>;
+using pll = pair<long long, long long>;
+
+// Constants
+const int MOD = 1e9 + 7;
+const int INF = 1e9;
+const ll LINF = 1e18;
+
+// Shortcuts for common functions
+#define pb push_back
+#define mp make_pair
+#define fi first
+#define se second
+#define all(x) x.begin(), x.end()
+#define sz(x) (int)(x.size())
+
+// Looping shortcuts
+#define f(i, a, b) for (ll i = a; i < b; i++)
+#define r(i, n) for (ll i = 0; i < n; i++)
+
+// Debugging shortcuts (optional, can be removed)
+#define DEBUG(x) cerr << #x << " = " << (x) << endl
+
+
+void solve() {
+   
+    ll n;
+    cin >> n;
+    ll a[n+10][2] = {0};
+    
+    
+    f(i, 0, n){
+        ll x, y;
+        cin >> x >> y;
+        a[x][y] = 1;
+    }
+
+    ll ans = 0;
+    f(i, 0, n+1){
+       if(a[i][0] && a[i][1]){
+           ans= ans + n -2;
+       }
+       if(a[i][0]&&a[i+2][0]&&a[i+1][1])ans++;
+       if(a[i][1]&&a[i+2][1]&&a[i+1][0])ans++;
+
+
+    }
+    // cout << ans << "\n";
+
+    // f(i, 1, n){
+    //     if(a[i+1][0] && a[i][1] && a[i-1][0]){
+    //         ans++;
+    //     }
         
-            return true;
-        
-    }
-    if(p1[0] == p3[0] && p1[1] != p3[1]){
-        return true;
-    }
-    if(p2[0] == p3[0] && p2[1] != p3[1]){
-        return true;
-    }
-    return false;
-}
+    //     if(a[i][0] && a[i-1][1] && a[i+1][1]){
+    //         ans++;
+    //     }
+    // }
 
-// Check for diagonal right triangle like (x, 0), (x+1, 1), (x+2, 0)
-bool isDiagonalRightTriangle(const vector<int>& p1, const vector<int>& p2, const vector<int>& p3) {
-    if (p1[1] == 0 && p2[1] == 1 && p3[1] == 0) {
-        if (p1[0] + 1 == p2[0] && p2[0] + 1 == p3[0]) {
-            return true;
-        }
-    }
-    return false;
-}
-
-int countRightAngleTriangles(const vector<vector<int>>& vertices) {
-    int count = 0;
-
-    // Set for efficient lookups
-    set<vector<int>> vertexSet(vertices.begin(), vertices.end());
-
-    // Generate combinations of three vertices
-    for (size_t i = 0; i < vertices.size(); ++i) {
-        for (size_t j = i + 1; j < vertices.size(); ++j) {
-            for (size_t k = j + 1; k < vertices.size(); ++k) {
-                const vector<int>& p1 = vertices[i];
-                const vector<int>& p2 = vertices[j];
-                const vector<int>& p3 = vertices[k];
-
-                // Check for both types of right triangles
-                if (isUprightTriangle(p1, p2, p3) || isUprightTriangle(p1, p3, p2) || 
-                    isUprightTriangle(p2, p1, p3) || isDiagonalRightTriangle(p1, p2, p3) || 
-                    isDiagonalRightTriangle(p1, p3, p2) || isDiagonalRightTriangle(p2, p1, p3)) {
-                    count++;
-                }
-            }
-        }
-    }
-
-    return count;
+    cout << ans << "\n";
 }
 
 int main() {
-    ll y;
-    cin >> y;
-
-    // Only proceed if y is 1
-    if (y == 1) {
-        ll n;
-        cin >> n;
-
-        vector<vector<int>> vertices(n, vector<int>(2));
-
-        // Input the vertices
-        for (int i = 0; i < n; i++) {
-            cin >> vertices[i][0] >> vertices[i][1];
-        }
-
-        // Count and output the number of right-angled triangles
-        int result = countRightAngleTriangles(vertices);
-        cout << result << endl;
-    } else {
-        cout << 0 << endl; // If y is 0, output 0
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int t;
+    cin >> t;
+    while (t--) {
+        solve();
     }
-
     return 0;
 }

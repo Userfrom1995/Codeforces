@@ -22,42 +22,33 @@ const ll LINF = 1e18;
 #define sz(x) (int)(x.size())
 
 // Looping shortcuts
-#define FOR(i, a, b) for (int i = a; i < b; i++)
-#define REP(i, n) FOR(i, 0, n)
+#define f(i, a, b) for (ll i = a; i < b; i++)
+#define r(i, n) for (ll i = 0; i < n; i++)
 
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-ll solve(vll &arr, ll size, ll a, ll b) {
-    sort(arr.begin(), arr.end());
-    ll diff = arr[size - 1] - arr[0];
+void solve() {
+    ll n, a, b;
+    cin >> n >> a >> b;
+    ll c = gcd(a, b);
 
-    if (diff == 0 || (diff < b && diff < a)) {
-        return diff;
-    
+    vll arr;
+    ll x;
+    f(i, 0, n){
+        cin >> x;
+        x = x % c;
+        arr.pb(x);
     }
-    else if (diff % a == 0 || diff % b == 0 || diff % (a + b) == 0) {
-        return 0;
+    sort(all(arr));
+
+    ll ans = arr[n-1] - arr[0];
+
+    for(ll i = 1; i < n; i++){
+        ans = min(ans, arr[i-1] - arr[i] + c);
     }
-    else if (diff > a) {
-        arr[0] += a;
-        return solve(arr, size, a, b);
-    }
-    else if (diff > b) {
-        arr[0] += b;
-        return solve(arr, size, a, b);
-    }
-    else if (diff > diff - b) {
-        arr[0] += b;
-        return solve(arr, size, a, b);
-    }
-    else if (diff > diff - a) {
-        arr[0] += a;
-        return solve(arr, size, a, b);
-    }
-    else {
-        return diff;
-    }
+
+    cout << ans << "\n";
 }
 
 int main() {
@@ -67,23 +58,9 @@ int main() {
     int t;
     cin >> t;
     while (t--) {
-        ll size, a, b;
-        cin >> size >> a >> b;
-        if (a > b) {
-            swap(a, b);
-        }
-        
-        vll arr(size);
-        for (ll i = 0; i < size; i++) {
-            cin >> arr[i];
-        }
-        
-        ll result = solve(arr, size, a, b);
-        cout << result << "\n";
+        solve();
     }
-    
-   
-
-
     return 0;
 }
+//finally understood the solution and tutorial for this problem
+// 2 videos : 1 on solution and 1 on bezoout's theorem.
