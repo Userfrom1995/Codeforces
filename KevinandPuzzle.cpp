@@ -28,34 +28,17 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-
 void solve() {
-    ll n,x,y;
-    cin >> n >> x >> y;
-    ll a[n];
-    ll sum=0;
-    f(i,0,n){
-        cin >> a[i];
-        sum+=a[i];
-    }
-    sort(a,a+n);
-    ll max = sum -x;
-    ll min = sum - y;
-    
-    ll ans = 0;
-
-    for(ll i=0;i<n;i++){
-        auto up = upper_bound(a+i+1,a+n,max-a[i]);
-        auto low = lower_bound(a+i+1,a+n,min-a[i]);
-        ans+=up-low;
-    }
-
-    cout<<ans<<"\n";
-
-   
-
-
+    int n,mod=998244353; cin >> n; vector<int> a(n+1,0),dp(n+1,0); dp[0]=1;
+	for(int i=1;i<=n;i++){
+		cin >> a[i]; 
+		if(a[i]==a[i-1]) dp[i]+=dp[i-1];
+		if(i>=2&&a[i]==a[i-2]+1) dp[i]+=dp[i-2];
+		dp[i]%=mod;
+	} 
+	cout << (dp[n]+dp[n-1])%mod << endl;
 }
+
 
 int main() {
     ios::sync_with_stdio(false);

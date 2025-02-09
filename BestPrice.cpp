@@ -28,33 +28,39 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-
 void solve() {
-    ll n,x,y;
-    cin >> n >> x >> y;
+   ll n,k;
+    cin >> n >> k;
     ll a[n];
-    ll sum=0;
+    ll b[n];
+    set<ll> s;
     f(i,0,n){
         cin >> a[i];
-        sum+=a[i];
+        s.insert(a[i]);
     }
+    f(i,0,n){
+        cin >> b[i];
+        s.insert(b[i]);
+    }
+    ll ans = 0; 
     sort(a,a+n);
-    ll max = sum -x;
-    ll min = sum - y;
-    
-    ll ans = 0;
-
-    for(ll i=0;i<n;i++){
-        auto up = upper_bound(a+i+1,a+n,max-a[i]);
-        auto low = lower_bound(a+i+1,a+n,min-a[i]);
-        ans+=up-low;
+    sort(b,b+n);
+    for(auto i:s){
+        // cout<<"i: "<<i<<"\n";
+        auto x = lower_bound(a,a+n,i)-a;
+        // cout<<"x: "<<x<<"\n";
+        auto y = lower_bound(b,b+n,i)-b;
+        // cout<<"y: "<<y<<"\n";
+        if(x-y<=k){
+            ans = max(ans,i*(n-y));
+            // cout<<"ans: "<<ans<<"\n";
+           
+        }
+        
+        
     }
-
+    // cout<<"Final Answer :"<<ans<<"\n";
     cout<<ans<<"\n";
-
-   
-
-
 }
 
 int main() {

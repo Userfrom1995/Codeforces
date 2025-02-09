@@ -28,32 +28,20 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-
 void solve() {
-    ll n,x,y;
-    cin >> n >> x >> y;
-    ll a[n];
-    ll sum=0;
-    f(i,0,n){
-        cin >> a[i];
-        sum+=a[i];
-    }
-    sort(a,a+n);
-    ll max = sum -x;
-    ll min = sum - y;
     
-    ll ans = 0;
-
-    for(ll i=0;i<n;i++){
-        auto up = upper_bound(a+i+1,a+n,max-a[i]);
-        auto low = lower_bound(a+i+1,a+n,min-a[i]);
-        ans+=up-low;
-    }
-
-    cout<<ans<<"\n";
-
    
+       
+    string s;
+    cin >> s;
+    ll length = s.size();
+    s.pop_back();
+    s.pop_back();
+    
 
+    
+        cout << s <<"i" <<endl;
+    
 
 }
 

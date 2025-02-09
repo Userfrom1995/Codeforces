@@ -28,33 +28,39 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
-
 void solve() {
-    ll n,x,y;
-    cin >> n >> x >> y;
-    ll a[n];
-    ll sum=0;
-    f(i,0,n){
-        cin >> a[i];
-        sum+=a[i];
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<ll>> matrix(n, vector<ll>(m));
+    vector<pair<ll, int>> sums;  
+   
+    for (int i = 0; i < n; i++) {
+        ll rowSum = 0;
+        for (int j = 0; j < m; j++) {
+            cin >> matrix[i][j];
+            rowSum += matrix[i][j];
+        }
+        sums.emplace_back(rowSum, i);
     }
-    sort(a,a+n);
-    ll max = sum -x;
-    ll min = sum - y;
+
     
-    ll ans = 0;
-
-    for(ll i=0;i<n;i++){
-        auto up = upper_bound(a+i+1,a+n,max-a[i]);
-        auto low = lower_bound(a+i+1,a+n,min-a[i]);
-        ans+=up-low;
-    }
-
-    cout<<ans<<"\n";
+    sort(sums.rbegin(), sums.rend());
 
    
+    vector<ll> bigArray;
+    for (auto &[sum, idx] : sums) {
+        bigArray.insert(bigArray.end(), matrix[idx].begin(), matrix[idx].end());
+    }
 
+   
+    ll prefixSum = 0, totalScore = 0;
+    for (ll num : bigArray) {
+        prefixSum += num;
+        totalScore += prefixSum;
+    }
 
+    cout << totalScore << "\n";
 }
 
 int main() {
