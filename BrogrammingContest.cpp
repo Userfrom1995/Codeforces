@@ -29,7 +29,19 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-    
+    ll n;
+    string s;
+    cin >> n >> s;
+    ll ans = 0;
+    if(s[0]=='1'){
+        ans++;
+    }
+    f(i, 0, n-1) {
+        if (s[i] != s[i+1]) {
+            ans++;
+        }
+    }
+    cout << ans<<"\n";
 }
 
 int main() {

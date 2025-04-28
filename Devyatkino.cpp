@@ -28,8 +28,52 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
+bool check7(ll n){
+    while(n>0){
+        if(n%10==7){
+            return true;
+        }
+        n/=10;
+    }
+    return false;
+}
+
 void solve() {
+    ll n;
+    cin >> n;
+    // if(check7(n)){
+    //     cout << 0 << endl;
+    //     return;
+    // }
+    // for(ll i =0;i<9;i++){
+    //     n = n+9;
+    //     if(check7(n)){
+    //         cout << i+1 << endl;
+    //         return;
+    //     }
+
+    // }
+    ll temp;
+
+    for(ll i = 0; i <= 9; i++){
+       temp = n - i;
+       string s = to_string(temp);
+       int diff =0;
+       for(char c : s){
+        if(c <= '7'){
+           diff = max(diff, c - '0');
+        }
+
+           
+       }
+         if( i>=7-diff){
+              cout << i << endl;
+              return;
+
+    }
+
     
+}
 }
 
 int main() {
@@ -43,3 +87,4 @@ int main() {
     }
     return 0;
 }
+// This one was hell of a problem.

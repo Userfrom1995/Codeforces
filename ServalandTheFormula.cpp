@@ -29,7 +29,21 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
+    ll x,y;
+    cin >> x >> y;
+
+     ll k = pow(2,ceil(log2(max(x,y)+1)));
+    if(x==y){
+        cout<<-1<<"\n";
+        return;
+
+    }
+   
     
+
+    ll ans = k-max(x,y);
+     cout<<ans<<"\n";
+    return;
 }
 
 int main() {

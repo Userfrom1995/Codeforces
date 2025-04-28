@@ -29,7 +29,23 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-    
+    ll n,m,k;
+    cin >> n >> m >> k;
+    ll o;
+    for(ll i=1;i<=n;i++){
+        if(m%k==0){
+            o++;
+        }
+        for(ll j=1;j<=m;j++){
+            o++;
+            o=o%k;
+            if(o==0){
+                o=k;
+            }
+            cout<<o<<" ";
+        }
+        cout<<"\n";
+    }
 }
 
 int main() {

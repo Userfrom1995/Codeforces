@@ -28,8 +28,34 @@ const ll LINF = 1e18;
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
+bool allCharactersSame(const string& s) {
+    return all_of(s.begin(), s.end(), [&](char c) { return c == s[0]; });
+}
+
 void solve() {
-    
+    ll size, op;
+    string s;
+    cin >> size >> op >> s;
+    string reverse_s = s;
+    reverse(reverse_s.begin(), reverse_s.end());
+   
+    if(op==0){
+        if(s<reverse_s){
+            cout <<"YES" << "\n";
+        }
+        else{
+            cout <<"NO" << "\n";
+        }
+        return;
+    }
+
+    if (allCharactersSame(s)) {
+        cout << "NO" << endl;
+    } else {
+        cout << "YES" << endl;
+    }
+    return;
+
 }
 
 int main() {

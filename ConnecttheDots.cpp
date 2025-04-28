@@ -1,78 +1,62 @@
 #include <bits/stdc++.h>
 using namespace std;
-
-// Shortcuts for common data types
-using ll = long long;
-
-// Constants
-const ll MOD = 1e9 + 7;
-const ll INF = 1e9;
-const ll LINF = 1e18;
-
-// Depth-First Search (DFS)
-void dfs(ll node, vector<vector<ll>>& adjList, vector<bool>& visited) {
-    visited[node] = true;
-    for (ll neighbor : adjList[node]) {
-        if (!visited[neighbor]) {
-            dfs(neighbor, adjList, visited);
-        }
-    }
+int f[200020];
+int z;
+int F(int x)
+{
+	return f[x] != x ? f[x] = F(f[x]) : x;
 }
-
-// Count connected components in the graph
-ll countConnectedComponents(ll n, vector<vector<ll>>& adjList) {
-    vector<bool> visited(n, false);
-    ll connectedComponents = 0;
-
-    for (ll i = 0; i < n; i++) {
-        if (!visited[i]) {
-            connectedComponents++;
-            dfs(i, adjList, visited);
-        }
-    }
-
-    return connectedComponents;
+void U(int x, int y)
+{
+	x = F(x);
+	y = F(y);
+	if (x != y)
+	{
+		z--;
+		f[x] = y;
+	}
 }
-
-void solve() {
-    ll n, m;
-    cin >> n >> m;
-
-    // Dynamic adjacency list
-    vector<vector<ll>> adjList(n);
-
-    while (m--) {
-        ll a, d, k;
-        cin >> a >> d >> k;
-        a--;  // Convert to 0-based indexing
-
-        ll prev = a;
-        while (k--) {
-            ll nextVertex = prev + d;
-            if (nextVertex >= n) break;  // Stop if we exceed the number of vertices
-
-            // Add the undirected edge
-            adjList[prev].push_back(nextVertex);
-            adjList[nextVertex].push_back(prev);
-
-            prev = nextVertex;
-        }
-    }
-
-    // Count and print the number of connected components
-    ll connectedComponents = countConnectedComponents(n, adjList);
-    cout << connectedComponents << "\n";
+int b[11][200020];
+int main()
+{
+	int t;
+	cin >> t;
+	for (int tt = 0; tt < t; tt++)
+	{
+		int n, m;
+		cin >> n >> m;
+		for (int i = 0; i < n + 5; i++)
+		{
+			f[i] = i;
+			for (int d = 0; d < 11; d++)
+			{
+				b[d][i] = 0;
+			}
+		}
+		z = n;
+		for (int i = 0; i < m; i++)
+		{
+			int a, d, k;
+			cin >> a >> d >> k;
+			b[d][a]++;
+			b[d][a + d * k]--;
+		}
+		for (int d = 1; d <= 10; d++)
+		{
+			for (int i = 1; i <= d; i++)
+			{
+				int s = 0;
+				for (int j = i; j <= n; j += d)
+				{
+					s += b[d][j];
+					if (s > 0)
+					{
+						U(j, j + d);
+					}
+				}
+			}
+		}
+		cout << z << endl;
+	}
+	return 0;
 }
-
-int main() {
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-
-    ll t;
-    cin >> t;
-    while (t--) {
-        solve();
-    }
-    return 0;
-}
-// RUNOUT OF MEMORY ERROR

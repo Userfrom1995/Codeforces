@@ -23,13 +23,28 @@ const ll LINF = 1e18;
 
 // Looping shortcuts
 #define f(i, a, b) for (ll i = a; i < b; i++)
-#define r(i, n) FOR(i, 0, n)
+#define r(i, n) for (ll i = 0; i < n; i++)
 
 // Debugging shortcuts (optional, can be removed)
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
+    ll n, x;
+    cin >> n >> x;
+    ll sum = 0;
+
+    f(i, 0, n) {
+        ll a;
+        cin >> a;
+        sum += a;
+    }
+
     
+    if (sum == n * x) {
+        cout << "YES\n";
+    } else {
+        cout << "NO\n";
+    }
 }
 
 int main() {

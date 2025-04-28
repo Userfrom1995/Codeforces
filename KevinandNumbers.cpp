@@ -29,7 +29,42 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-    
+    priority_queue<ll> a,b;
+    ll n;
+    ll m;
+    cin >> n;
+    cin>>m;
+    while(n--){
+        ll x;
+        cin >> x;
+        a.push(x);
+    }
+    while(m--){
+        ll x;
+        cin >> x;
+        b.push(x);
+    }
+    while(a.size() && b.size()){
+        if(a.top()>b.top()||a.size()<b.size()){
+            cout << "No" << "\n";
+            return;
+        }
+        if(a.top()==b.top()){
+            a.pop();
+            b.pop();
+            continue;
+        }
+       ll x=b.top();
+         b.pop();
+         b.push(x>>1),b.push((x+1)>>1);
+       
+        
+    }
+    if(a.empty()&&b.empty()){
+        cout << "Yes" << "\n";
+    }else{
+        cout << "No" << "\n";
+    }
 }
 
 int main() {

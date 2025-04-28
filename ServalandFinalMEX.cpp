@@ -29,7 +29,6 @@ const ll LINF = 1e18;
 #define DEBUG(x) cerr << #x << " = " << (x) << endl
 
 void solve() {
-    
 }
 
 int main() {
